@@ -9,17 +9,18 @@ var userScore = 0;
 var computerScore = 0;
 var computerChoice = "";
 var uChoice = "";
+var result = "";
 
 function playGame(userChoice){
-    var signs = ["rock","paper","scissors"];  
+    var signs = ["rock","paper","scissors"];
     computerChoice = signs[Math.floor(Math.random()*3)];
     uChoice = userChoice
-    
+
     console.log("User choice: " + userChoice);
     console.log("Computer choice: " + computerChoice);
 
     if(userChoice === "rock" && computerChoice === "scissors" || 
-       userChoice === "paper" && computerChoice === "rock" || 
+       userChoice === "paper" && computerChoice === "rock"  ||
        userChoice === "scissors" && computerChoice === "paper"){
         userScore += 5;
         console.log("User wins this round!");
@@ -42,4 +43,10 @@ function keepScore(){
     document.getElementById('p3').innerHTML = "Number of ties " + tieResult
     document.getElementById('p4').innerHTML = "Computer Choice " + computerChoice
     document.getElementById('p5').innerHTML = "User Choice " + uChoice
+    document.getElementById('p6').innerHTML = "Result " + result
+     if(userScore >= 50 || computerScore >= 50){
+        var winner = userScore >= 50 ? 'User' : 'Computer';
+        result = winner + " wins the game!";
+        document.getElementById('p6').innerHTML = result;
+    }
 }
